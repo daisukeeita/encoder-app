@@ -8,10 +8,11 @@ robust encoding service.
 
 - Java 23
 - Maven
+- Spring
 - PostgreSQL for Database
 - JUnit 5 for Testing
 
 ## To-Do List
 
-- [ ] Connect to PostgreSQL Database
+- [x] Connect to PostgreSQL Database
 - [ ] Create Models
