@@ -5,10 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import io.github.cdimascio.dotenv.Dotenv;
 
-/**
- * Hello world!
- *
- */
 public class App {
   private final static Dotenv DOTENV = Dotenv.load();
   private final static String URL = DOTENV.get("DATABASE_URL");
