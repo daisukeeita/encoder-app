@@ -15,4 +15,6 @@ robust encoding service.
 ## To-Do List
 
 - [x] Connect to PostgreSQL Database
+- [ ] Setup Spring Boot Framework
+- [ ] Initialize Spring Boot Frameworkd
 - [ ] Create Models
