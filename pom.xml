@@ -52,6 +52,14 @@
       <version>42.7.5</version>
     </dependency>
 
+    <!-- Test Container for PostgreSQL -->
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>1.21.0</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- Java Environmental Variables -->
     <dependency>
       <groupId>io.github.cdimascio</groupId>
