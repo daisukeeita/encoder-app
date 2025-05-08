@@ -8,13 +8,15 @@ robust encoding service.
 
 - Java 23
 - Maven
-- Spring
+- Spring Boot
 - PostgreSQL for Database
 - JUnit 5 for Testing
 
 ## To-Do List
 
 - [x] Connect to PostgreSQL Database
-- [ ] Setup Spring Boot Framework
-- [ ] Initialize Spring Boot Frameworkd
+- [x] Setup Spring Boot Framework
+- [x] Configure Spring Boot JPA and connect to PostgreSQL Database
+- [ ] Test the Spring Boot with connection to PostgreSQL Database
+
 - [ ] Create Models
