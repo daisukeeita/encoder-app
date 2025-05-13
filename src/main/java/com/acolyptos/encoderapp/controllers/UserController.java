@@ -3,6 +3,8 @@ package com.acolyptos.encoderapp.controllers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +23,8 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("api/v1")
 public class UserController {
+  private final static Logger LOG = LoggerFactory.getLogger(UserController.class);
+
   @Autowired
   private UserRepository userRepository;
 
@@ -37,7 +41,7 @@ public class UserController {
         "User not found for this ID :: " + userId 
     ));
 
-    return ResponseEntity.ok(user);
+    return ResponseEntity.ok().body(user);
   }
 
   @PostMapping("/users")
