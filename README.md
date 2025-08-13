@@ -14,9 +14,9 @@ The Encoder Application retrieves the vehicle details from LTMS using either Pla
 graph TD
   id1[Encoder]-->id2[Encoder UI]-->id3[LTMS API Client Module]
   id3-->id4[If Found]-->id5[Verification Service]
-  id6-->[If Matches]-->id7[Testing Lane]
-  id8-->[Doesn't Match]-->id9[Customer visits LTO]
-  id3-->id10[If Not Found]-->id11[Customer visits LTO]
+  id6-->id7[If Matches]-->id8[Testing Lane]
+  id9-->[Doesn't Match]-->id10[Customer visits LTO]
+  id3-->id10[If Not Found]-->id12[Customer visits LTO]
 ```
 *For detailed architecture, see [Architecture Overview](docs/architecture.md)*
 ## Tech Stack
