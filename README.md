@@ -35,4 +35,5 @@ None for now...
 - [Architecture Overview](docs/architecture.md)
 - [Business Workflow](docs/workflow.md)
 - [ERD and Data Models](docs/erd.md)
-- [Development Plan](docs/dev-pan.md)
+- [Database Roles](docs/db-roles.md)
+- [Development Plan](docs/dev-plan.md)
