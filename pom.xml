@@ -10,7 +10,14 @@
 
   <name>encoder-app</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <!-- <url>http://www.example.com</url> -->
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>4.0.0-M1</version> <!-- Replace with current stable -->
+    <relativePath/> <!-- lookup parent from the repository -->
+  </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,6 +32,62 @@
       <version>5.11.4</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- Spring Maven Plugin -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <version>4.0.0-M1</version>
+    </dependency>
+
+    <!-- Spring Web -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- Spring Data JPA -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <!-- Spring Test -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Validation -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+    <!-- PostgreSQL Driver -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.7.7</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- Lombok (compile-time only, not bundled in JAR) -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.38</version>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- Spring Boot Dev Tools (development only) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
   </dependencies>
 
   <build>
@@ -38,7 +101,7 @@
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.3.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
