@@ -79,6 +79,7 @@
       <artifactId>lombok</artifactId>
       <version>1.18.38</version>
       <optional>true</optional>
+      <scope>provided</scope>
     </dependency>
 
     <!-- Spring Boot Dev Tools (development only) -->
