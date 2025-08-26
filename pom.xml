@@ -26,13 +26,6 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.11.4</version>
-      <scope>test</scope>
-    </dependency>
-
     <!-- Spring Maven Plugin -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -88,6 +81,13 @@
       <scope>runtime</scope>
       <optional>true</optional>
     </dependency>
+
+    <!-- ANTLR for grammar compiler -->
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4</artifactId>
+      <version>4.13.2</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -118,7 +118,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.5.3</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
