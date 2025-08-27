@@ -1,5 +1,6 @@
 .env
 .factorypath
+.properties
 
 # Compiled class file
 *.class
