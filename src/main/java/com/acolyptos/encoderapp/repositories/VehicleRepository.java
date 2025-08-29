@@ -8,7 +8,8 @@ import com.acolyptos.encoderapp.models.Vehicle;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
-  Optional<Vehicle> findVehicleByPlateNumber(String plateNumber);
-  Optional<Vehicle> findVehicleByChassisNumber(String chassisNumber);
+  Optional<Vehicle> findVehicleByLicensePlate(String licensePlate);
+  Optional<Vehicle> findVehicleByEngine(String engine);
+  Optional<Vehicle> findVehicleByChassis(String chassis);
   Optional<Vehicle> findVehicleByMvFileNumber(String mvFileNumber);
 }
