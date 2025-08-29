@@ -50,7 +50,7 @@ public class Vehicle {
 
   @NonNull
   @NotBlank(message = "Vehicle Color is required.")
-  @Column(name = "Color", nullable =  false, length = 20)
+  @Column(name = "Color", nullable = false, length = 20)
   private String color;
 
   @NonNull
@@ -82,7 +82,5 @@ public class Vehicle {
         + ",\n\tmodel: " + model + ",\n\tmodelYear: " + modelYear + ",\n\tfuelType: " + fuelType
         + "\n}";
   }
-
-  
 }
 
