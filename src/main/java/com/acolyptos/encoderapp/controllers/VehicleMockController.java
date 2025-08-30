@@ -29,8 +29,6 @@ public class VehicleMockController {
   public ResponseEntity<String> getVehicleInfoByLicensePlate(@PathVariable String licensePlate)
       throws IOException {
 
-    JsonNode match = null;
-
     try {
       ClassPathResource resource = new ClassPathResource("mock/vehicle.json");
       ObjectMapper mapper = new ObjectMapper();
@@ -41,7 +39,7 @@ public class VehicleMockController {
             .body("{\"error\":\"Invalid JSON format\"}");
       }
       for (JsonNode vehicle : root) {
-        if (licensePlate.equals(vehicle.get("Vehicle_Information").get("License_Plate").asText())) {
+        if (licensePlate.equals(vehicle.path("Vehicle_Information").path("License_Plate").asText())) {
           return ResponseEntity.ok()
             .contentType(MediaType.APPLICATION_JSON)
             .body(mapper.writeValueAsString(vehicle));
