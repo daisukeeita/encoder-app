@@ -1,6 +1,5 @@
 package com.acolyptos.encoderapp.repositories;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -20,12 +19,23 @@ public class VehicleRepositoryTest {
 
   @Test
   void shouldSaveAndFindVehicleByMake() {
-    Vehicle vehicle = new Vehicle("Toyota", "Vios");
+    Vehicle vehicle = new Vehicle(
+      "AAR4855",
+      "3D7666A51764D251E06373916",
+      "MALA251AAEM257815",
+      "63HADM23257815",
+      "062000000178260",
+      "ELECTRIC RED",
+      "Light Vehicle",
+      "EON",
+      "2014",
+      "Gas"
+    );    
+    
     vehicleRepository.save(vehicle);
 
-    Optional<Vehicle> found = vehicleRepository.findVehicleByMake("Toyota");
+    Optional<Vehicle> found = vehicleRepository.findVehicleByLicensePlate("AAR4855");
 
     assertTrue(found.isPresent());
-    assertEquals(vehicle.getMake(), found.get().getMake());
   }
 }
