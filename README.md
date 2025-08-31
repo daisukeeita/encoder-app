@@ -1,7 +1,11 @@
 # Encoder Application
-The Encoder Application retrieves the vehicle details from LTMS using either Plate Number or MV File Number from customer's Official Receipt and/or Certification of Registration.
+
+The Encoder Application retrieves the vehicle details from LTMS using either
+Plate Number or MV File Number from customer's Official Receipt and/or
+Certification of Registration.
 
 ## Features
+
 - Authentication Module
 - Encoder UI
 - LTMS Integration
@@ -9,7 +13,9 @@ The Encoder Application retrieves the vehicle details from LTMS using either Pla
 - Testing Lane Dispatch
 - Audit Logging Module
 - Admin Panel
+
 ## Architecture
+
 ```mermaid
 graph TD
   id1[Encoder]-->id2[Encoder UI]-->id3[LTMS API Client Module]
@@ -18,8 +24,11 @@ graph TD
   id5-->id8[Doesn't Match]-->id9[Customer visits LTO]
   id3-->id10[If Not Found]-->id11[Customer visits LTO]
 ```
-*For detailed architecture, see [Architecture Overview](docs/architecture.md)*
+
+_For detailed architecture, see [Architecture Overview](docs/architecture.md)_
+
 ## Tech Stack
+
 - **Front-End:** React + Typescript
 - **Back-End:** Spring Boot
 - **Database:** PostgreSQL
@@ -29,9 +38,13 @@ graph TD
 - **Message Queue:** To Be Decided (TBD)
 - **Configuration:** DotEnv, YAML Config
 - **Observability:** Spring Actuator or LogBack, TBD
+
 ## Usage
+
 None for now...
+
 ## Documentation
+
 - [Architecture Overview](docs/architecture.md)
 - [Business Workflow](docs/workflow.md)
 - [ERD and Data Models](docs/erd.md)
