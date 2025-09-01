@@ -10,6 +10,8 @@
 hs_err_pid*
 replay_pid*
 
+./src/main/resources/mock/vehicle.json
+
 ##############################
 ## Maven
 ##############################
