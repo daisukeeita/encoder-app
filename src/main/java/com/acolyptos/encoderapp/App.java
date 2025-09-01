@@ -1,26 +1,24 @@
 package com.acolyptos.encoderapp;
 
+import java.io.IOException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.acolyptos.encoderapp.models.Vehicle;
+import org.springframework.core.io.ClassPathResource;
+import com.acolyptos.encoderapp.models.VehicleInspection;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootApplication
 public class App {
-  public static void main( String[] args ) {
+  public static void main(String[] args) throws IOException {
     SpringApplication.run(App.class, args);
 
-    Vehicle vehicle = new Vehicle(
-      "AAR4855",
-      "3D7666A51764D251E06373916",
-      "MALA251AAEM257815",
-      "63HADM23257815",
-      "062000000178260",
-      "ELECTRIC RED",
-      "Light Vehicle",
-      "EON",
-      "2014",
-      "Gas"
-    );
+    ObjectMapper mapper = new ObjectMapper();
+    ClassPathResource resource = new ClassPathResource("mock/vehicle.json");
+
+    VehicleInspection vehicle = mapper.readValue(
+        resource.getInputStream().readAllBytes(), 
+        VehicleInspection.class
+      );
 
     System.out.println(vehicle.toString());
   }
