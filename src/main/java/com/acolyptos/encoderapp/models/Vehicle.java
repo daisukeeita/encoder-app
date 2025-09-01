@@ -1,77 +1,70 @@
 package com.acolyptos.encoderapp.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@RequiredArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity
-@Table(name = "vehicle")
+@Setter
+// @Entity
+// @Table(name = "vehicle")
 public class Vehicle {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  // @Id
+  // @GeneratedValue(strategy = GenerationType.IDENTITY)
+  // private long id;
 
-  @NonNull
-  @NotBlank(message = "Plate Number is required.")
-  @Column(name = "License_Plate", nullable = false, unique = true, length = 20)
+  // @NonNull
+  // @NotBlank(message = "Plate Number is required.")
+  // @Column(name = "License_Plate", nullable = false, unique = true, length = 20)
   private String licensePlate;
 
-  @NonNull
-  @NotBlank(message = "Inspection ID is required.")
-  @Column(name = "Inspection_ID", nullable = false, unique = true, length = 100)
+  // @NonNull
+  // @NotBlank(message = "Inspection ID is required.")
+  // @Column(name = "Inspection_ID", nullable = false, unique = true, length = 100)
   private String inspectionId;
 
-  @NonNull
-  @NotBlank(message = "Chassis Number is required.")
-  @Column(name = "Chassis", nullable = false, unique = true, length = 32)
+  // @NonNull
+  // @NotBlank(message = "Chassis Number is required.")
+  // @Column(name = "Chassis", nullable = false, unique = true, length = 32)
   private String chassis;
 
-  @NonNull
-  @NotBlank(message = "Engine Number is required.")
-  @Column(name = "Engine", nullable = false, unique = true, length = 20)
+  // @NonNull
+  // @NotBlank(message = "Engine Number is required.")
+  // @Column(name = "Engine", nullable = false, unique = true, length = 20)
   private String engine;
 
-  @NonNull
-  @NotBlank(message = "MV File Number is required.")
-  @Column(name = "MV_File_Number", nullable = false, unique = true, length = 20)
+  // @NonNull
+  // @NotBlank(message = "MV File Number is required.")
+  // @Column(name = "MV_File_Number", nullable = false, unique = true, length = 20)
   private String mvFileNumber;
 
-  @NonNull
-  @NotBlank(message = "Vehicle Color is required.")
-  @Column(name = "Color", nullable = false, length = 20)
+  // @NonNull
+  // @NotBlank(message = "Vehicle Color is required.")
+  // @Column(name = "Color", nullable = false, length = 20)
   private String color;
 
-  @NonNull
-  @NotBlank(message = "Category Type is required.")
-  @Column(name = "Category_Type", nullable = false, length = 20)
+  // @NonNull
+  // @NotBlank(message = "Category Type is required.")
+  // @Column(name = "Category_Type", nullable = false, length = 20)
   private String categoryType;
 
 
-  @NonNull
-  @NotBlank(message = "Vehicle Model is required.")
-  @Column(name = "Model", nullable = false, length = 100)
+  // @NonNull
+  // @NotBlank(message = "Vehicle Model is required.")
+  // @Column(name = "Model", nullable = false, length = 100)
   private String model;
 
-  @NonNull
-  @NotBlank(message = "Vehicle Model Year is required.")
-  @Column(name = "Model_Year", nullable = false, length = 5)
+  // @NonNull
+  // @NotBlank(message = "Vehicle Model Year is required.")
+  // @Column(name = "Model_Year", nullable = false, length = 5)
   private String modelYear;
 
-  @NonNull
-  @NotBlank(message = "Fuel Type is required.")
-  @Column(name = "Fuel_Type", nullable = false, length = 7)
+  // @NonNull
+  // @NotBlank(message = "Fuel Type is required.")
+  // @Column(name = "Fuel_Type", nullable = false, length = 7)
   private String fuelType;
 
   @Override
