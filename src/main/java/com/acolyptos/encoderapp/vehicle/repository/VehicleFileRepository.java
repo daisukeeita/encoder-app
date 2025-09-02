@@ -1,9 +1,9 @@
-package com.acolyptos.encoderapp.repositories;
+package com.acolyptos.encoderapp.vehicle.repository;
 
 import java.io.IOException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
-import com.acolyptos.encoderapp.models.VehicleInspection;
+import com.acolyptos.encoderapp.vehicle.model.VehicleInspection;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
