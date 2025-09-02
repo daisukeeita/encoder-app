@@ -1,6 +1,5 @@
 package com.acolyptos.encoderapp.vehicle.model;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
