@@ -1,10 +1,10 @@
-package com.acolyptos.encoderapp.services;
+package com.acolyptos.encoderapp.vehicle.service;
 
 import java.io.IOException;
 import org.springframework.stereotype.Service;
-import com.acolyptos.encoderapp.models.Vehicle;
-import com.acolyptos.encoderapp.models.VehicleInspection;
-import com.acolyptos.encoderapp.repositories.VehicleFileRepository;
+import com.acolyptos.encoderapp.vehicle.model.Vehicle;
+import com.acolyptos.encoderapp.vehicle.model.VehicleInspection;
+import com.acolyptos.encoderapp.vehicle.repository.VehicleFileRepository;
 
 @Service
 public class VehicleFileService {
