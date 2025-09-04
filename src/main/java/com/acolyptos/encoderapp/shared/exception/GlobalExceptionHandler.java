@@ -16,12 +16,6 @@ import com.acolyptos.encoderapp.vehicle.exception.VehicleNotFoundException;
 public class GlobalExceptionHandler {
 
 
-  @ExceptionHandler(VehicleDataParseException.class)
-  public ResponseEntity<Map<String, String>> handleDataParse(
-      final VehicleDataParseException exception) {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-        .body(Map.of("error", exception.getMessage()));
-  }
 
   @ExceptionHandler(VehicleNotFoundException.class)
   public ResponseEntity<Map<String, String>> handleVehicleNotFound(
