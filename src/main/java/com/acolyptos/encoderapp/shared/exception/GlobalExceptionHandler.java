@@ -17,11 +17,6 @@ public class GlobalExceptionHandler {
 
 
 
-  @ExceptionHandler(VehicleNotFoundException.class)
-  public ResponseEntity<Map<String, String>> handleVehicleNotFound(
-      final VehicleNotFoundException exception) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND)
-        .body(Map.of("error", exception.getMessage()));
   }
 
   @ExceptionHandler(Exception.class)
