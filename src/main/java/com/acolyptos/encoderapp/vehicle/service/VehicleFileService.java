@@ -1,89 +1,69 @@
 package com.acolyptos.encoderapp.vehicle.service;
 
 import java.io.IOException;
+import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.acolyptos.encoderapp.vehicle.exception.VehicleDataParseException;
-import com.acolyptos.encoderapp.vehicle.exception.VehicleNotFoundException;
+import com.acolyptos.encoderapp.vehicle.exception.VehicleDataValidationException;
+import com.acolyptos.encoderapp.vehicle.exception.VehicleFileHandlingException;
+import com.acolyptos.encoderapp.vehicle.exception.VehicleMissingDataException;
 import com.acolyptos.encoderapp.vehicle.model.Vehicle;
-import com.acolyptos.encoderapp.vehicle.model.VehicleInformation;
 import com.acolyptos.encoderapp.vehicle.model.VehicleInspection;
 import com.acolyptos.encoderapp.vehicle.repository.VehicleFileRepository;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
 
 @Service
 public class VehicleFileService {
 
   private final VehicleFileRepository vehicleFileRepository;
+  private final Validator validator;
 
-  public VehicleFileService(VehicleFileRepository vehicleFileRepository) {
+  @Autowired
+  public VehicleFileService(final VehicleFileRepository vehicleFileRepository,
+      final Validator validator) {
     this.vehicleFileRepository = vehicleFileRepository;
+    this.validator = validator;
   }
 
   public Vehicle setFilterVehicleInformationFromJson() throws IOException {
     try {
-      VehicleInspection vehicleInspection = vehicleFileRepository.fetchVehicleData();
-      VehicleInformation vehicleInformation = vehicleInspection.getVehicleInformation();
+      final VehicleInspection vehicleInspection = vehicleFileRepository.fetchVehicleData();
 
-      if (vehicleInformation == null) {
-        throw new VehicleNotFoundException("Vehicle Information is missing from response.");
-      }
-      if (vehicleInspection.getInspectionId() == null
-          || vehicleInspection.getInspectionId().isBlank()) {
-        throw new VehicleNotFoundException("Inspection ID is missing from response.");
-      }
-      if (vehicleInformation.getLicensePlate() == null
-          || vehicleInformation.getLicensePlate().isBlank()) {
-        throw new VehicleNotFoundException("License Plate is missing from response.");
-      }
-      if (vehicleInformation.getChassis() == null || vehicleInformation.getChassis().isBlank()) {
-        throw new VehicleNotFoundException("Chassis is missing from response.");
-      }
-      if (vehicleInformation.getEngine() == null || vehicleInformation.getEngine().isBlank()) {
-        throw new VehicleNotFoundException("Engine is missing from response.");
-      }
-      if (vehicleInformation.getMvFileNumber() == null
-          || vehicleInformation.getMvFileNumber().isBlank()) {
-        throw new VehicleNotFoundException("MV File Number is missing from response.");
-      }
-      if (vehicleInformation.getColor() == null || vehicleInformation.getColor().isBlank()) {
-        throw new VehicleNotFoundException("Color is missing from response.");
-      }
-      if (vehicleInformation.getCategory() == null || vehicleInformation.getCategory().isBlank()) {
-        throw new VehicleNotFoundException("Category is missing from response.");
-      }
-      if (vehicleInformation.getBrand() == null || vehicleInformation.getBrand().isBlank()) {
-        throw new VehicleNotFoundException("Brand is missing from response.");
-      }
-      if (vehicleInformation.getManufacturer() == null
-          || vehicleInformation.getManufacturer().isBlank()) {
-        throw new VehicleNotFoundException("Manufacturer is missing from response.");
-      }
-      if (vehicleInformation.getModelYear() == null
-          || vehicleInformation.getModelYear().isBlank()) {
-        throw new VehicleNotFoundException("Model Year is missing from response.");
-      }
-      if (vehicleInformation.getFuelType() == null || vehicleInformation.getFuelType().isBlank()) {
-        throw new VehicleNotFoundException("Fuel Type is missing from response.");
+      final Set<ConstraintViolation<VehicleInspection>> violations =
+          validator.validate(vehicleInspection);
+      if (!violations.isEmpty()) {
+        throw new ConstraintViolationException(violations);
       }
 
-      Vehicle vehicle = new Vehicle();
-      vehicle.setInspectionId(vehicleInspection.getInspectionId());
-      vehicle.setLicensePlate(vehicleInspection.getVehicleInformation().getLicensePlate());
-      vehicle.setChassis(vehicleInspection.getVehicleInformation().getChassis());
-      vehicle.setEngine(vehicleInspection.getVehicleInformation().getEngine());
-      vehicle.setMvFileNumber(vehicleInspection.getVehicleInformation().getMvFileNumber());
-      vehicle.setColor(vehicleInspection.getVehicleInformation().getColor());
-      vehicle.setCategoryType(vehicleInspection.getVehicleInformation().getCategory());
-      vehicle.setModel(vehicleInspection.getVehicleInformation().getManufacturer() + " - "
-          + vehicleInspection.getVehicleInformation().getBrand());
-      vehicle.setModelYear(vehicleInspection.getVehicleInformation().getModelYear());
-      vehicle.setFuelType(vehicleInspection.getVehicleInformation().getFuelType());
-
-      return vehicle;
-
-    } catch (VehicleDataParseException exception) {
-      throw new VehicleNotFoundException("Error fetching data.");
-    } catch (IOException e) {
-      throw new VehicleNotFoundException("Vehicle not registered to LTMS.");
+      return processVehicleInspectionToVehicle(vehicleInspection);
+    } catch (final VehicleMissingDataException exception) {
+      throw new VehicleDataValidationException(
+          "Error in validating the data: " + exception.getMessage(), exception);
+    } catch (final VehicleFileHandlingException exception) {
+      throw new VehicleDataValidationException(
+          "Error in handling vehicle file data: " + exception.getMessage());
+    } catch (final IOException exception) {
+      throw new VehicleDataValidationException(
+          "Unexpected I/O error occured: " + exception.getMessage());
     }
+  }
+
+  private Vehicle processVehicleInspectionToVehicle(final VehicleInspection vehicleInspection) {
+    final Vehicle vehicle = new Vehicle();
+    vehicle.setInspectionId(vehicleInspection.getInspectionId());
+    vehicle.setLicensePlate(vehicleInspection.getVehicleInformation().getLicensePlate());
+    vehicle.setChassis(vehicleInspection.getVehicleInformation().getChassis());
+    vehicle.setEngine(vehicleInspection.getVehicleInformation().getEngine());
+    vehicle.setMvFileNumber(vehicleInspection.getVehicleInformation().getMvFileNumber());
+    vehicle.setColor(vehicleInspection.getVehicleInformation().getColor());
+    vehicle.setCategoryType(vehicleInspection.getVehicleInformation().getCategory());
+    vehicle.setModel(vehicleInspection.getVehicleInformation().getManufacturer() + " - "
+        + vehicleInspection.getVehicleInformation().getBrand());
+    vehicle.setModelYear(vehicleInspection.getVehicleInformation().getModelYear());
+    vehicle.setFuelType(vehicleInspection.getVehicleInformation().getFuelType());
+
+    return vehicle;
   }
 }
