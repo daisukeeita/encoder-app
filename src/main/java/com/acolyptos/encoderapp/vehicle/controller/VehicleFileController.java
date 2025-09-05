@@ -16,7 +16,7 @@ public class VehicleFileController {
   private final VehicleFileService vehicleFileService;
 
   @Autowired
-  public VehicleFileController(VehicleFileService vehicleFileService) {
+  public VehicleFileController(final VehicleFileService vehicleFileService) {
     this.vehicleFileService = vehicleFileService;
   }
 
