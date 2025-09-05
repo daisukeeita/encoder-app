@@ -13,11 +13,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class VehicleFileRepository {
 
-  @Autowired
   private ObjectMapper objectMapper = new ObjectMapper();
   private final ClassPathResource resource = new ClassPathResource("mock/vehicle.json");
 
-  public VehicleFileRepository(ObjectMapper objectMapper) {
+  @Autowired
+  public VehicleFileRepository(final ObjectMapper objectMapper) {
     this.objectMapper = objectMapper;
   }
 
@@ -32,7 +32,6 @@ public class VehicleFileRepository {
     if (!resource.exists()) {
       throw new VehicleFileHandlingException("Vehicle file not found: " + resource.getPath());
     }
-
     try (InputStream file = resource.getInputStream()) {
       return objectMapper.readValue(file, VehicleInspection.class);
     } catch (final FileNotFoundException exception) {
