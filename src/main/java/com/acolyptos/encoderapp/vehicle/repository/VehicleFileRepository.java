@@ -7,10 +7,12 @@ import java.io.InputStream;
 import java.io.InterruptedIOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Repository;
 import com.acolyptos.encoderapp.vehicle.exception.VehicleFileHandlingException;
 import com.acolyptos.encoderapp.vehicle.model.VehicleInspection;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Repository
 public class VehicleFileRepository {
 
   private ObjectMapper objectMapper = new ObjectMapper();
