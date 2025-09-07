@@ -28,12 +28,12 @@ public class VehicleInspection {
   @JsonProperty("Purpose")
   private String purpose;
   
-  @NotNull(message = "Vehicle Information should not be null.")
+  // @NotNull(message = "Vehicle Information should not be null.")
   @Valid
   @JsonProperty("Vehicle_Information")
   private VehicleInformation vehicleInformation;
 
-  @NotNull(message = "Test Limits should not be null.")
+  // @NotNull(message = "Test Limits should not be null.")
   @Valid
   @JsonProperty("Test_Limits")
   private VehicleTestLimits vehicleTestLimits;

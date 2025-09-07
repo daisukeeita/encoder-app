@@ -1,7 +1,8 @@
 package com.acolyptos.encoderapp.vehicle.model;
 
+import com.acolyptos.encoderapp.shared.NaJsonDeserializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,95 +17,95 @@ import lombok.Setter;
 @Setter
 public class VehicleInformation {
 
-  @NotBlank(message = "Historic Vehicle was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Historic_Vehicle")
   private String historicVehicle;
 
-  @NotBlank(message = "Equivalent Inertia was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Equivalent_Inertia")
   private String equivalentInertia;
 
-  @NotBlank(message = "Fuel Type was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Fuel_Type")
   private String fuelType;
 
-  @NotBlank(message = "Traction Type was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Traction_Type")
   private String tractionType;
 
-  @NotBlank(message = "Number of Axes was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Number_Of_Axes")
   private String numberOfAxes;
 
-  @NotBlank(message = "Model Yeas was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Model_Year")
   private String modelYear;
 
-  @NotBlank(message = "Engine Capacity was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Engine_Capacity")
   private String engineCapacity;
 
-  @NotBlank(message = "Category was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Category")
   private String category;
 
-  @NotBlank(message = "Category Type was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Category_Type")
   private String categoryType;
 
-  @NotBlank(message = "Chassis was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Chassis")
   private String chassis;
 
-  @NotBlank(message = "Engine was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Engine")
   private String engine;
 
-  @NotBlank(message = "MV File Number was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("MV_File_No")
   private String mvFileNumber;
 
-  @NotBlank(message = "Circulation Date was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Circulation_Date")
   private String circulationDate;
 
-  @NotBlank(message = "Color was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Color")
   private String color;
 
-  @NotBlank(message = "License Plate was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("License_Plate")
   private String licensePlate;
 
-  @NotBlank(message = "Manufacturer was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Manufacturer")
   private String manufacturer;
 
-  @NotBlank(message = "Brand was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Brand")
   private String brand;
 
-  @NotBlank(message = "Mileage was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Mileage")
   private String mileage;
 
-  @NotBlank(message = "VIN was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("VIN")
   private String vin;
 
-  @NotBlank(message = "Turbo was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Turbo")
   private String turbo;
 
-  @NotBlank(message = "Presence of Catalytic Converter was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Presence_Of_Catalytic_Converter")
   private String presenceOfCatalyticConverter;
 
-  @NotBlank(message = "Maximum Total Weight was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Maximum_Total_Weight")
   private String maximumTotalWeight;
 
-  @NotBlank(message = "Date of First Registration was not provided.")
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   @JsonProperty("Date_First_Registration")
   private String dateFirstRegistration;
 
