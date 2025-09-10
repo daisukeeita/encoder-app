@@ -5,15 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InterruptedIOException;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleFileHandlingException;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleInspection;
+import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
 import com.acolyptos.encoderapp.domain.vehicle.repository.VehicleClientInterface;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Component
+@Profile("mock")
 public class VehicleFileDataFetcher implements VehicleClientInterface {
 
   private final ObjectMapper objectMapper;
@@ -24,7 +27,7 @@ public class VehicleFileDataFetcher implements VehicleClientInterface {
   }
 
   @Override
-  public VehicleInspection fetchVehicleData() {
+  public VehicleInspection fetchVehicleData(VehicleRequest vehicleRequest) {
 
     if (!resource.exists()) {
       throw new VehicleFileHandlingException("Vehicle file not found from: " + resource.getPath());
