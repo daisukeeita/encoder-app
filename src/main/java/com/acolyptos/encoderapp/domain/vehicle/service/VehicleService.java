@@ -1,8 +1,10 @@
 package com.acolyptos.encoderapp.domain.vehicle.service;
 
+import org.springframework.stereotype.Service;
 import com.acolyptos.encoderapp.domain.vehicle.model.Vehicle;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleInspection;
 
+@Service
 public class VehicleService {
 
   public Vehicle processVehicleInspectionToVehicle(final VehicleInspection vehicleInspection) {
