@@ -1,4 +1,4 @@
-package com.acolyptos.encoderapp.shared.exception;
+package com.acolyptos.encoderapp.domain.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
