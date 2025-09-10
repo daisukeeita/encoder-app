@@ -1,4 +1,4 @@
-package com.acolyptos.encoderapp.vehicle.exception;
+package com.acolyptos.encoderapp.domain.vehicle.exception;
 
 /**
  * Custom class exception for Validating Data (Service Layer).
