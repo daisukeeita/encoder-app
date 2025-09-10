@@ -8,6 +8,7 @@ import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleFileHandlingExce
 import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleMissingDataException;
 import com.acolyptos.encoderapp.domain.vehicle.model.Vehicle;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleInspection;
+import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
 import com.acolyptos.encoderapp.domain.vehicle.repository.VehicleClientInterface;
 import com.acolyptos.encoderapp.domain.vehicle.service.VehicleService;
 import jakarta.validation.ConstraintViolation;
@@ -21,17 +22,20 @@ public class VehicleAppService {
   private final Validator validator;
 
   @Autowired
-  public VehicleAppService(final VehicleClientInterface vehicleClientInterface,
-      final Validator validator, final VehicleService vehicleService) {
-    this.vehicleClientInterface = vehicleClientInterface;
-    this.vehicleService = vehicleService;
+  public VehicleAppService(
+    final Validator validator,
+    final VehicleService vehicleService,
+    final VehicleClientInterface vehicleClientInterface
+  ) {
     this.validator = validator;
+    this.vehicleService = vehicleService;
+    this.vehicleClientInterface = vehicleClientInterface;
   }
 
-  public Vehicle filterVehicleInspectionFromJson() throws Exception {
+  public Vehicle filterVehicleInspectionFromJson(final VehicleRequest vehicleRequest) throws Exception {
 
     try {
-      final VehicleInspection vehicleInspection = vehicleClientInterface.fetchVehicleData();
+      final VehicleInspection vehicleInspection = vehicleClientInterface.fetchVehicleData(vehicleRequest);
 
       final Set<ConstraintViolation<VehicleInspection>> violations =
           validator.validate(vehicleInspection);
