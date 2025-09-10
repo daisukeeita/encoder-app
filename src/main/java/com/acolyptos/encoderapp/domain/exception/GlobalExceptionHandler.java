@@ -1,4 +1,4 @@
-package com.acolyptos.encoderapp.shared.exception;
+package com.acolyptos.encoderapp.domain.exception;
 
 import java.io.EOFException;
 import java.io.FileNotFoundException;
@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.acolyptos.encoderapp.vehicle.exception.VehicleDataValidationException;
-import com.acolyptos.encoderapp.vehicle.exception.VehicleFileHandlingException;
-import com.acolyptos.encoderapp.vehicle.exception.VehicleMissingDataException;
+import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleDataValidationException;
+import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleFileHandlingException;
+import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleMissingDataException;
 
 /**
  * Centralized exception handling for layers.
