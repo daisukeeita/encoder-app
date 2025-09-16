@@ -3,6 +3,7 @@ package com.acolyptos.encoderapp.domain.vehicle.model;
 import com.acolyptos.encoderapp.shared.NaJsonDeserializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,7 @@ public class VehicleInformation {
   @JsonProperty("Equivalent_Inertia")
   private String equivalentInertia;
 
-  @JsonDeserialize(using = NaJsonDeserializer.class)
+  @NotNull(message = "Fuel Type should not be null.")
   @JsonProperty("Fuel_Type")
   private String fuelType;
 
@@ -53,15 +54,15 @@ public class VehicleInformation {
   @JsonProperty("Category_Type")
   private String categoryType;
 
-  @JsonDeserialize(using = NaJsonDeserializer.class)
+  @NotNull(message = "Chassis should not be null.")
   @JsonProperty("Chassis")
   private String chassis;
 
-  @JsonDeserialize(using = NaJsonDeserializer.class)
+  @NotNull(message = "Engine should not be null.")
   @JsonProperty("Engine")
   private String engine;
 
-  @JsonDeserialize(using = NaJsonDeserializer.class)
+  @NotNull(message = "MV File Number should not be null.")
   @JsonProperty("MV_File_No")
   private String mvFileNumber;
 
@@ -73,7 +74,7 @@ public class VehicleInformation {
   @JsonProperty("Color")
   private String color;
 
-  @JsonDeserialize(using = NaJsonDeserializer.class)
+  @NotNull(message = "License Plate should not be null.")
   @JsonProperty("License_Plate")
   private String licensePlate;
 
@@ -105,7 +106,7 @@ public class VehicleInformation {
   @JsonProperty("Maximum_Total_Weight")
   private String maximumTotalWeight;
 
-  @JsonDeserialize(using = NaJsonDeserializer.class)
+  @NotNull(message = "First Registration Date should not be null.")
   @JsonProperty("Date_First_Registration")
   private String dateFirstRegistration;
 
