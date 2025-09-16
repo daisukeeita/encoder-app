@@ -14,13 +14,27 @@ public class VehicleService {
     vehicle.setChassis(vehicleInspection.getVehicleInformation().getChassis());
     vehicle.setEngine(vehicleInspection.getVehicleInformation().getEngine());
     vehicle.setMvFileNumber(vehicleInspection.getVehicleInformation().getMvFileNumber());
-    vehicle.setColor(vehicleInspection.getVehicleInformation().getColor());
-    vehicle.setCategoryType(vehicleInspection.getVehicleInformation().getCategory());
     vehicle.setModel(vehicleInspection.getVehicleInformation().getManufacturer() + " - "
-        + vehicleInspection.getVehicleInformation().getBrand());
-    vehicle.setModelYear(vehicleInspection.getVehicleInformation().getModelYear());
+          + vehicleInspection.getVehicleInformation().getBrand());
     vehicle.setFuelType(vehicleInspection.getVehicleInformation().getFuelType());
 
+    if (vehicleInspection.getVehicleInformation().getColor() == null) {
+      vehicle.setColor("Color was not provided. Please see the nearest LTO to update the Vehicle Color.");
+    } else {
+      vehicle.setColor(vehicleInspection.getVehicleInformation().getColor());
+    }
+
+    if (vehicleInspection.getVehicleInformation().getCategoryType() == null) {
+      vehicle.setCategoryType("Category Type was not provided. Please see the nearest LTO to update the Vehicle Category Type.");
+    } else {
+      vehicle.setCategoryType(vehicleInspection.getVehicleInformation().getCategoryType());
+    }
+
+    if (vehicleInspection.getVehicleInformation().getModelYear() == null) {
+      vehicle.setModelYear("Year Model was not provided. Please see the nearest LTO to update the Vehicle Year Model.");
+    } else {
+      vehicle.setModelYear(vehicleInspection.getVehicleInformation().getModelYear());
+    }
     return vehicle;
   }
 }
