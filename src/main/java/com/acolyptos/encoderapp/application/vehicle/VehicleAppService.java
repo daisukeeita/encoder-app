@@ -3,9 +3,7 @@ package com.acolyptos.encoderapp.application.vehicle;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleDataValidationException;
-import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleFileHandlingException;
-import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleMissingDataException;
+import com.acolyptos.encoderapp.domain.exception.UnexpectedError;
 import com.acolyptos.encoderapp.domain.vehicle.model.Vehicle;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleInspection;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
@@ -22,20 +20,19 @@ public class VehicleAppService {
   private final Validator validator;
 
   @Autowired
-  public VehicleAppService(
-    final Validator validator,
-    final VehicleService vehicleService,
-    final VehicleClientInterface vehicleClientInterface
-  ) {
+  public VehicleAppService(final Validator validator, final VehicleService vehicleService,
+      final VehicleClientInterface vehicleClientInterface) {
     this.validator = validator;
     this.vehicleService = vehicleService;
     this.vehicleClientInterface = vehicleClientInterface;
   }
 
-  public Vehicle filterVehicleInspectionFromJson(final VehicleRequest vehicleRequest) throws Exception {
+  public Vehicle filterVehicleInspectionFromJson(final VehicleRequest vehicleRequest)
+      throws Exception {
 
     try {
-      final VehicleInspection vehicleInspection = vehicleClientInterface.fetchVehicleData(vehicleRequest);
+      final VehicleInspection vehicleInspection =
+          vehicleClientInterface.fetchVehicleData(vehicleRequest);
 
       final Set<ConstraintViolation<VehicleInspection>> violations =
           validator.validate(vehicleInspection);
@@ -46,15 +43,8 @@ public class VehicleAppService {
 
       return vehicleService.processVehicleInspectionToVehicle(vehicleInspection);
 
-    } catch (final VehicleMissingDataException exception) {
-      throw new VehicleDataValidationException(
-          "Error in validating the data: " + exception.getMessage(), exception);
-    } catch (final VehicleFileHandlingException exception) {
-      throw new VehicleDataValidationException(
-          "Error in handling vehicle file data: " + exception.getMessage());
     } catch (final Exception exception) {
-      throw new VehicleDataValidationException(
-          "Unexpected I/O error occured: " + exception.getMessage());
+      throw new UnexpectedError("Unexpected I/O error occured: " + exception.getMessage());
     }
   }
 
