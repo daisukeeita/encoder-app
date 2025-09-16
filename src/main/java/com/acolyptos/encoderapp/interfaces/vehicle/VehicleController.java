@@ -21,11 +21,9 @@ public class VehicleController {
     this.vehicleAppService = vehicleAppService;
   }
 
-  @PostMapping(
-    value = "/requestVehicle",
-    produces = MediaType.APPLICATION_JSON_VALUE
-  )
-  public Vehicle retrieveVehicleFromFile(@RequestBody VehicleRequest vehicleRequest) throws Exception {
+  @PostMapping(value = "/requestVehicle", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Vehicle retrieveVehicleFromFile(@RequestBody VehicleRequest vehicleRequest)
+      throws Exception {
     return vehicleAppService.filterVehicleInspectionFromJson(vehicleRequest);
   }
 }
