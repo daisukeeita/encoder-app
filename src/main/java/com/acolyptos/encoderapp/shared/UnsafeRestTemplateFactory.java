@@ -14,31 +14,27 @@ import org.springframework.web.client.RestTemplate;
 
 public class UnsafeRestTemplateFactory {
 
-    public static RestTemplate create() {
-        try {
-            // Trust all certs
-            TrustStrategy acceptingTrustStrategy = (chain, authType) -> true;
+  public static RestTemplate create() {
+    try {
+      // Trust all certs
+      TrustStrategy acceptingTrustStrategy = (chain, authType) -> true;
 
-            SSLContext sslContext = SSLContextBuilder.create()
-                    .loadTrustMaterial(acceptingTrustStrategy)
-                    .build();
+      SSLContext sslContext =
+          SSLContextBuilder.create().loadTrustMaterial(acceptingTrustStrategy).build();
 
-            SSLConnectionSocketFactory sslSocketFactory =
-                    new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE);
+      SSLConnectionSocketFactory sslSocketFactory =
+          new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE);
 
-            HttpClientConnectionManager connectionManager =
-                    PoolingHttpClientConnectionManagerBuilder.create()
-                            .setSSLSocketFactory(sslSocketFactory)
-                            .build();
+      HttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder
+          .create().setSSLSocketFactory(sslSocketFactory).build();
 
-            CloseableHttpClient httpClient = HttpClients.custom()
-                    .setConnectionManager(connectionManager)
-                    .build();
+      CloseableHttpClient httpClient =
+          HttpClients.custom().setConnectionManager(connectionManager).build();
 
-            return new RestTemplate(new HttpComponentsClientHttpRequestFactory(httpClient));
+      return new RestTemplate(new HttpComponentsClientHttpRequestFactory(httpClient));
 
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to create unsafe RestTemplate", e);
-        }
+    } catch (Exception e) {
+      throw new RuntimeException("Failed to create unsafe RestTemplate", e);
     }
+  }
 }
