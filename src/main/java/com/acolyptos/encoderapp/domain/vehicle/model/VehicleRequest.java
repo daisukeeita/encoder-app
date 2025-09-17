@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * A class responsible for holding the Request Body from the Client. This class will be will be used
+ * for fetching raw vehiclde data from the external source.
+ */
 @Getter
 @Setter
 @AllArgsConstructor
