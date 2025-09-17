@@ -8,9 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Model for Vehicle Inspection Information.
- */
+/** A class responsible for holding the sub-object of raw data fetched from the external source. */
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -63,14 +61,28 @@ public class VehicleTestLimits {
 
   @Override
   public String toString() {
-    return "VehicleTestLimits: {\n\t\tlightIntensity: " + lightIntensity
-        + ",\n\t\tbrakeServiceEff: " + brakeServiceEff + ",\n\t\tbrakeParkingEff: "
-        + brakeParkingEff + ",\n\t\tbrakeServiceDiff: " + brakeServiceDiff
-        + ",\n\t\tsideslipDeviation: " + sideslipDeviation + ",\n\t\tsuspensionDeviation: "
-        + suspensionDeviation + ",\n\t\tspeedDeviation: " + speedDeviation + ",\n\t\tsoundLevel: "
-        + soundLevel + ",\n\t\temissionHc: " + emissionHc + ",\n\t\temissionCo: " + emissionCo
-        + ",\n\t\topacityK: " + opacityK + "\n\t}";
+    return "VehicleTestLimits: {\n\t\tlightIntensity: "
+        + lightIntensity
+        + ",\n\t\tbrakeServiceEff: "
+        + brakeServiceEff
+        + ",\n\t\tbrakeParkingEff: "
+        + brakeParkingEff
+        + ",\n\t\tbrakeServiceDiff: "
+        + brakeServiceDiff
+        + ",\n\t\tsideslipDeviation: "
+        + sideslipDeviation
+        + ",\n\t\tsuspensionDeviation: "
+        + suspensionDeviation
+        + ",\n\t\tspeedDeviation: "
+        + speedDeviation
+        + ",\n\t\tsoundLevel: "
+        + soundLevel
+        + ",\n\t\temissionHc: "
+        + emissionHc
+        + ",\n\t\temissionCo: "
+        + emissionCo
+        + ",\n\t\topacityK: "
+        + opacityK
+        + "\n\t}";
   }
-
-
 }
