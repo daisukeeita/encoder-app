@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Model for Vehicle Inspection Information.
+ * A class responsible for holding the raw data fetched from the external source. VehicleInformation
+ * and VehicleTestLimits are its sub-objects with its own responsibilities.
  */
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,7 +25,7 @@ public class VehicleInspection {
   @NotNull(message = "Inspection Purpose should not be null.")
   @JsonProperty("Purpose")
   private String purpose;
-  
+
   @Valid
   @JsonProperty("Vehicle_Information")
   private VehicleInformation vehicleInformation;
@@ -35,7 +36,14 @@ public class VehicleInspection {
 
   @Override
   public String toString() {
-    return "VehicleInspection {\n\tinspectionId: " + inspectionId + ",\n\tpurpose: " + purpose
-        + ",\n\t" + vehicleInformation + ",\n\t" + vehicleTestLimits + "\n}";
+    return "VehicleInspection {\n\tinspectionId: "
+        + inspectionId
+        + ",\n\tpurpose: "
+        + purpose
+        + ",\n\t"
+        + vehicleInformation
+        + ",\n\t"
+        + vehicleTestLimits
+        + "\n}";
   }
 }
