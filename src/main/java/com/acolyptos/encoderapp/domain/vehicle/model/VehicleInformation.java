@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Model For Vehicle Inspection Information.
+ * A class responsible for holding the sub-object of raw data fetched from the external source.
+ * Majority of the properties will be used to transform raw data into {@link Vehicle}.
  */
 @AllArgsConstructor
 @NoArgsConstructor
@@ -112,19 +113,52 @@ public class VehicleInformation {
 
   @Override
   public String toString() {
-    return "VehicleInformation: {\n\t\thistoricVehicle: " + historicVehicle
-        + ",\n\t\tequivalentInertia: " + equivalentInertia + ",\n\t\tfuelType: " + fuelType
-        + ",\n\t\ttractionType: " + tractionType + ",\n\t\tnumberOfAxes: " + numberOfAxes
-        + ",\n\t\tmodelYear: " + modelYear + ",\n\t\tengineCapacity: " + engineCapacity
-        + ",\n\t\tcategory: " + category + ",\n\t\tcategoryType: " + categoryType
-        + ",\n\t\tchassis: " + chassis + ",\n\t\tengine: " + engine + ",\n\t\tmvFileNumber: "
-        + mvFileNumber + ",\n\t\tcirculationDate: " + circulationDate + ",\n\t\tcolor: " + color
-        + ",\n\t\tlicensePlate: " + licensePlate + ",\n\t\tmanufacturer: " + manufacturer
-        + ",\n\t\tbrand: " + brand + ",\n\t\tmileage: " + mileage + ",\n\t\tvin: " + vin
-        + ",\n\t\tturbo: " + turbo + ",\n\t\tpresenceOfCatalyticConverter: "
-        + presenceOfCatalyticConverter + ",\n\t\tmaximumTotalWeight: " + maximumTotalWeight
-        + ",\n\t\tdateFirstRegistration: " + dateFirstRegistration + "\n\t}";
+    return "VehicleInformation: {\n\t\thistoricVehicle: "
+        + historicVehicle
+        + ",\n\t\tequivalentInertia: "
+        + equivalentInertia
+        + ",\n\t\tfuelType: "
+        + fuelType
+        + ",\n\t\ttractionType: "
+        + tractionType
+        + ",\n\t\tnumberOfAxes: "
+        + numberOfAxes
+        + ",\n\t\tmodelYear: "
+        + modelYear
+        + ",\n\t\tengineCapacity: "
+        + engineCapacity
+        + ",\n\t\tcategory: "
+        + category
+        + ",\n\t\tcategoryType: "
+        + categoryType
+        + ",\n\t\tchassis: "
+        + chassis
+        + ",\n\t\tengine: "
+        + engine
+        + ",\n\t\tmvFileNumber: "
+        + mvFileNumber
+        + ",\n\t\tcirculationDate: "
+        + circulationDate
+        + ",\n\t\tcolor: "
+        + color
+        + ",\n\t\tlicensePlate: "
+        + licensePlate
+        + ",\n\t\tmanufacturer: "
+        + manufacturer
+        + ",\n\t\tbrand: "
+        + brand
+        + ",\n\t\tmileage: "
+        + mileage
+        + ",\n\t\tvin: "
+        + vin
+        + ",\n\t\tturbo: "
+        + turbo
+        + ",\n\t\tpresenceOfCatalyticConverter: "
+        + presenceOfCatalyticConverter
+        + ",\n\t\tmaximumTotalWeight: "
+        + maximumTotalWeight
+        + ",\n\t\tdateFirstRegistration: "
+        + dateFirstRegistration
+        + "\n\t}";
   }
-
-
 }
