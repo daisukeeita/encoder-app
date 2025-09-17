@@ -1,78 +1,72 @@
 package com.acolyptos.encoderapp.domain.vehicle.model;
 
+import com.acolyptos.encoderapp.shared.NaJsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * An class responsible for holding the transformed data from {@link VehicleInspection}. It uses
+ * custom JSON Deserializer {@link NaJsonDeserializer} to replace "NA" or NULL into a null value.
+ */
 @NoArgsConstructor
 @Getter
 @Setter
-// @Entity
-// @Table(name = "vehicle")
 public class Vehicle {
 
-  // @Id
-  // @GeneratedValue(strategy = GenerationType.IDENTITY)
-  // private long id;
-
-  // @NonNull
-  // @NotBlank(message = "Plate Number is required.")
-  // @Column(name = "License_Plate", nullable = false, unique = true, length = 20)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String licensePlate;
 
-  // @NonNull
-  // @NotBlank(message = "Inspection ID is required.")
-  // @Column(name = "Inspection_ID", nullable = false, unique = true, length = 100)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String inspectionId;
 
-  // @NonNull
-  // @NotBlank(message = "Chassis Number is required.")
-  // @Column(name = "Chassis", nullable = false, unique = true, length = 32)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String chassis;
 
-  // @NonNull
-  // @NotBlank(message = "Engine Number is required.")
-  // @Column(name = "Engine", nullable = false, unique = true, length = 20)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String engine;
 
-  // @NonNull
-  // @NotBlank(message = "MV File Number is required.")
-  // @Column(name = "MV_File_Number", nullable = false, unique = true, length = 20)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String mvFileNumber;
 
-  // @NonNull
-  // @NotBlank(message = "Vehicle Color is required.")
-  // @Column(name = "Color", nullable = false, length = 20)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String color;
 
-  // @NonNull
-  // @NotBlank(message = "Category Type is required.")
-  // @Column(name = "Category_Type", nullable = false, length = 20)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String categoryType;
 
-
-  // @NonNull
-  // @NotBlank(message = "Vehicle Model is required.")
-  // @Column(name = "Model", nullable = false, length = 100)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String model;
 
-  // @NonNull
-  // @NotBlank(message = "Vehicle Model Year is required.")
-  // @Column(name = "Model_Year", nullable = false, length = 5)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String modelYear;
 
-  // @NonNull
-  // @NotBlank(message = "Fuel Type is required.")
-  // @Column(name = "Fuel_Type", nullable = false, length = 7)
+  @JsonDeserialize(using = NaJsonDeserializer.class)
   private String fuelType;
 
   @Override
   public String toString() {
-    return "Vehicle {\n\tlicensePlate: " + licensePlate + ",\n\tinspectionId: " + inspectionId
-        + ",\n\tchassis: " + chassis + ",\n\tengine: " + engine + ",\n\tmvFileNumber: "
-        + mvFileNumber + ",\n\tcolor: " + color + ",\n\tcategoryType: " + categoryType
-        + ",\n\tmodel: " + model + ",\n\tmodelYear: " + modelYear + ",\n\tfuelType: " + fuelType
+    return "Vehicle {\n\tlicensePlate: "
+        + licensePlate
+        + ",\n\tinspectionId: "
+        + inspectionId
+        + ",\n\tchassis: "
+        + chassis
+        + ",\n\tengine: "
+        + engine
+        + ",\n\tmvFileNumber: "
+        + mvFileNumber
+        + ",\n\tcolor: "
+        + color
+        + ",\n\tcategoryType: "
+        + categoryType
+        + ",\n\tmodel: "
+        + model
+        + ",\n\tmodelYear: "
+        + modelYear
+        + ",\n\tfuelType: "
+        + fuelType
         + "\n}";
   }
 }
-
