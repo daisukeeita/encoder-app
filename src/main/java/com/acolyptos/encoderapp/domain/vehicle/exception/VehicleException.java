@@ -1,27 +1,23 @@
 package com.acolyptos.encoderapp.domain.vehicle.exception;
 
-/**
- * The generic business exception.
- */
+/** The class responsible for the entry point of Exception Handlers of Vehicle Feature. */
 public class VehicleException extends RuntimeException {
   /**
-   * Contructor of the Vehicle Exception Class with an error message.
+   * Constructs the class with description of the error.
    *
-   * @param message error message.
+   * @param message The customized description of the error occured.
    */
   public VehicleException(final String message) {
     super(message);
   }
 
   /**
-   * Contructor of the Vehicle Exception Class with an error message.
+   * Constructs the class with the description of the error and where it is coming from.
    *
-   * @param message message of the error occured.
-   * @param cause cause of the error occured.
+   * @param message The customized description of the error occured.
+   * @param cause The source of the error occured.
    */
   public VehicleException(final String message, final Throwable cause) {
     super(message, cause);
   }
 }
-
-
