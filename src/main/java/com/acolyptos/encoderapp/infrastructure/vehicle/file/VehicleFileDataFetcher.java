@@ -37,8 +37,8 @@ public class VehicleFileDataFetcher implements VehicleClientInterface {
    *
    * <p>This method fetches raw vehicle data from a file. It doesn't use the request body because
    * this is for integration test. It checks if the file exists and process the raw vehicle data
-   * into {@link VehicleInspection}. If an error occurs during data fetching, it throw {@link
-   * VehicleFileHandlingException}.
+   * into {@link VehicleInspection}. If an error occurs during data fetching or if the files does
+   * not exists, it'll throw {@link VehicleFileHandlingException}.
    *
    * @param vehicleRequest The request object containing vehicle information for fetching data.
    *     VehicleRequest won't be used for this method.
