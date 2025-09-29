@@ -1,19 +1,18 @@
 package com.acolyptos.encoderapp.domain.exception;
 
+import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleFileHandlingException;
+import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleResourceNotFoundException;
+import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleServiceNotAvailableException;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.InterruptedIOException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleFileHandlingException;
-import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleResourceNotFoundException;
-import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleServiceNotAvailableException;
 
-/**
- * Centralized exception handling for layers.
- */
+/** Centralized exception handling for layers. */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -49,6 +48,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(VehicleServiceNotAvailableException.class)
+  @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
   public ResponseEntity<ErrorResponse> handleVehicleServiceNotAvailableException(
       final VehicleServiceNotAvailableException exception) {
     final ErrorResponse errorResponse =
@@ -56,18 +56,21 @@ public class GlobalExceptionHandler {
     return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(errorResponse);
   }
 
-  @ExceptionHandler(UnexpectedError.class)
-  public ResponseEntity<ErrorResponse> handleUnexpectederror(final UnexpectedError exception) {
-    final ErrorResponse errorResponse =
-        new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-  }
+  // @ExceptionHandler(UnexpectedError.class)
+  // @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  // public ResponseEntity<ErrorResponse> handleUnexpectederror(final UnexpectedError exception) {
+  //   final ErrorResponse errorResponse =
+  //       new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
+  //   return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+  // }
 
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<ErrorResponse> handleAllExceptions(final Exception exception) {
-    final ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-  }
+  // @ExceptionHandler(Exception.class)
+  // @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  // public ResponseEntity<ErrorResponse> handleAllExceptions(final Exception exception) {
+  //   final ErrorResponse errorResponse =
+  //       new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
+  //   return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+  // }
 
   private HttpStatus mapExceptionsToHttpStatus(final Throwable cause) {
     if (cause instanceof FileNotFoundException) {
@@ -80,5 +83,4 @@ public class GlobalExceptionHandler {
 
     return HttpStatus.INTERNAL_SERVER_ERROR;
   }
-
 }
