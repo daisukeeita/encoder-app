@@ -13,5 +13,5 @@ public interface VehicleClientInterface {
    * @return A {@link VehicleInspection} for the requested vehicle.
    * @throws Exception if the vehicle data cannot be found or an error occurs during the fetch.
    */
-  VehicleInspection fetchVehicleData(VehicleRequest vehicleRequest) throws Exception;
+  VehicleInspection fetchVehicleData(VehicleRequest vehicleRequest);
 }
