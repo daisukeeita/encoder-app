@@ -54,24 +54,17 @@ public class VehicleAppService {
    * @throws UnexpectedError If an I/O or other unexpected issue occurs during data fetching.
    * @throws ConstraintViolationException If the fetched data violates any validation constraints.
    */
-  public Vehicle filterVehicleInspectionFromJson(final VehicleRequest vehicleRequest)
-      throws Exception {
+  public Vehicle filterVehicleInspectionFromJson(final VehicleRequest vehicleRequest) {
+    final VehicleInspection vehicleInspection =
+        vehicleClientInterface.fetchVehicleData(vehicleRequest);
 
-    try {
-      final VehicleInspection vehicleInspection =
-          vehicleClientInterface.fetchVehicleData(vehicleRequest);
+    final Set<ConstraintViolation<VehicleInspection>> violations =
+        validator.validate(vehicleInspection);
 
-      final Set<ConstraintViolation<VehicleInspection>> violations =
-          validator.validate(vehicleInspection);
-
-      if (!violations.isEmpty()) {
-        throw new ConstraintViolationException(violations);
-      }
-
-      return vehicleService.processVehicleInspectionToVehicle(vehicleInspection);
-
-    } catch (final Exception exception) {
-      throw new UnexpectedError("Unexpected I/O error occured: " + exception.getMessage());
+    if (!violations.isEmpty()) {
+      throw new ConstraintViolationException(violations);
     }
+
+    return vehicleService.processVehicleInspectionToVehicle(vehicleInspection);
   }
 }
