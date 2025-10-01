@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    
+    <!-- <springProperty scope="context" name="JSON_ENCODER_CLASS" value="net.logstash.logback.encoder.LogstashEncoder"/> -->
+
+    <appender name="SERVER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <timestamp>@timestamp</timestamp>
+                <level>log.level</level>
+                <thread>thread.name</thread>
+                <message>message</message>
+                <logger>log.logger</logger>
+            </fieldNames>
+        </encoder>
+        <file>logs/server.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/server.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFileNamingAndTriggeringPolicy">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="CLIENT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <timestamp>@timestamp</timestamp>
+                <level>log.level</level>
+                <thread>thread.name</thread>
+                <message>message</message>
+                <logger>log.logger</logger>
+            </fieldNames>
+        </encoder>
+        <file>logs/client-activity.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/client.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFileNamingAndTriggeringPolicy">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+    
+    <logger name="client.requests" level="INFO" additivity="false">
+        <appender-ref ref="CLIENT_FILE"/>
+        </logger>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/> <appender-ref ref="SERVER_FILE"/>
+    </root>
+
+</configuration>
