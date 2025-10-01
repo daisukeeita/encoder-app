@@ -3,6 +3,8 @@ package com.acolyptos.encoderapp.interfaces.vehicle;
 import com.acolyptos.encoderapp.application.vehicle.VehicleAppService;
 import com.acolyptos.encoderapp.domain.vehicle.model.Vehicle;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class VehicleController {
 
   private final VehicleAppService vehicleAppService;
+  private static final Logger clientLog = LoggerFactory.getLogger("client.requests");
+  private static final Logger serverLog = LoggerFactory.getLogger(VehicleController.class);
 
   /**
    * Constructs a new VehicleController with necessary dependency.
@@ -33,6 +37,8 @@ public class VehicleController {
   @PostMapping(value = "/requestVehicle", produces = MediaType.APPLICATION_JSON_VALUE)
   public Vehicle retrieveVehicleFromFile(@RequestBody VehicleRequest vehicleRequest)
       throws Exception {
+    clientLog.info("Client requested a vehicle: {}", vehicleRequest.getPlate_no());
+    serverLog.info("Received a request from the client: {}", vehicleRequest);
     return vehicleAppService.filterVehicleInspectionFromJson(vehicleRequest);
   }
 }
