@@ -3,13 +3,17 @@ package com.acolyptos.encoderapp.interfaces.vehicle;
 import com.acolyptos.encoderapp.application.vehicle.VehicleAppService;
 import com.acolyptos.encoderapp.domain.vehicle.model.Vehicle;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -37,8 +41,33 @@ public class VehicleController {
   @PostMapping(value = "/requestVehicle", produces = MediaType.APPLICATION_JSON_VALUE)
   public Vehicle retrieveVehicleFromFile(@RequestBody VehicleRequest vehicleRequest)
       throws Exception {
-    clientLog.info("Client requested a vehicle: {}", vehicleRequest.getPlate_no());
-    serverLog.info("Received a request from the client: {}", vehicleRequest);
+    serverLog.info("Received a request from the client: {}", vehicleRequest.getPlate_no());
     return vehicleAppService.filterVehicleInspectionFromJson(vehicleRequest);
+  }
+
+  @PostMapping(value = "/clientLog")
+  @ResponseStatus(HttpStatus.ACCEPTED)
+  public void receiveClientLog(@RequestBody Map<String, Object> logPayload) {
+    String level = (String) logPayload.getOrDefault("level", "INFO");
+    String message = (String) logPayload.getOrDefault("message", "Client Log Received.");
+
+    logPayload.forEach((key, value) -> MDC.put(key, String.valueOf(value)));
+
+    try {
+      switch (level.toUpperCase()) {
+        case "ERROR":
+          clientLog.error("Client Error: {}", message);
+          break;
+        case "WARN":
+          clientLog.warn("Client Warning: {}", message);
+          break;
+        case "INFO":
+        default:
+          clientLog.info("Client Info: {}", message);
+          break;
+      }
+    } finally {
+      MDC.clear();
+    }
   }
 }
