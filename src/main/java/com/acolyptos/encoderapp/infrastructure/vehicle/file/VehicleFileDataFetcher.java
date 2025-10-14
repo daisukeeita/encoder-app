@@ -1,9 +1,9 @@
 package com.acolyptos.encoderapp.infrastructure.vehicle.file;
 
+import com.acolyptos.encoderapp.domain.vehicle.client.VehicleClientInterface;
 import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleFileHandlingException;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleInspection;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
-import com.acolyptos.encoderapp.domain.vehicle.repository.VehicleClientInterface;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
