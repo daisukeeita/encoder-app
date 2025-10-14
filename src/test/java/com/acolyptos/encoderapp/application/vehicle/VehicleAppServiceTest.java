@@ -5,6 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import com.acolyptos.encoderapp.domain.vehicle.client.VehicleClientInterface;
+import com.acolyptos.encoderapp.domain.vehicle.model.Vehicle;
+import com.acolyptos.encoderapp.domain.vehicle.model.VehicleInspection;
+import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
+import com.acolyptos.encoderapp.domain.vehicle.service.VehicleService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.validation.Validator;
 import java.io.File;
 import java.util.Collections;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,28 +21,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.acolyptos.encoderapp.domain.vehicle.model.Vehicle;
-import com.acolyptos.encoderapp.domain.vehicle.model.VehicleInspection;
-import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
-import com.acolyptos.encoderapp.domain.vehicle.repository.VehicleClientInterface;
-import com.acolyptos.encoderapp.domain.vehicle.service.VehicleService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.validation.Validator;
 
 @ExtendWith(MockitoExtension.class)
 public class VehicleAppServiceTest {
 
-  @Mock
-  private Validator validator;
+  @Mock private Validator validator;
 
-  @Mock
-  private VehicleClientInterface vehicleClientInterface;
+  @Mock private VehicleClientInterface vehicleClientInterface;
 
-  @Mock
-  private VehicleService vehicleService;
+  @Mock private VehicleService vehicleService;
 
-  @InjectMocks
-  private VehicleAppService vehicleAppService;
+  @InjectMocks private VehicleAppService vehicleAppService;
 
   private VehicleRequest request;
 
@@ -43,13 +40,13 @@ public class VehicleAppServiceTest {
     request = new VehicleRequest("", "", "", "UQQ188", "");
   }
 
-
   @Test
   void shouldReturnVehicleWhenDataIsValid() throws Exception {
     // Arrange
     ObjectMapper mapper = new ObjectMapper();
-    VehicleInspection vehicleInspection = mapper
-        .readValue(new File("src/test/resources/mock/vehicle-test.json"), VehicleInspection.class);
+    VehicleInspection vehicleInspection =
+        mapper.readValue(
+            new File("src/test/resources/mock/vehicle-test.json"), VehicleInspection.class);
 
     Vehicle expectedVehicle = new Vehicle();
     expectedVehicle.setLicensePlate("AAR4855");
