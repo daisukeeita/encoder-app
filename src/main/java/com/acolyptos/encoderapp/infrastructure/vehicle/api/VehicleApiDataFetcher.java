@@ -1,11 +1,11 @@
 package com.acolyptos.encoderapp.infrastructure.vehicle.api;
 
 import com.acolyptos.encoderapp.domain.exception.UnexpectedError;
+import com.acolyptos.encoderapp.domain.vehicle.client.VehicleClientInterface;
 import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleResourceNotFoundException;
 import com.acolyptos.encoderapp.domain.vehicle.exception.VehicleServiceNotAvailableException;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleInspection;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
-import com.acolyptos.encoderapp.domain.vehicle.repository.VehicleClientInterface;
 import com.acolyptos.encoderapp.shared.UnsafeRestTemplateFactory;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.context.annotation.Profile;
