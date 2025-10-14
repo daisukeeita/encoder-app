@@ -1,10 +1,10 @@
 package com.acolyptos.encoderapp.application.vehicle;
 
 import com.acolyptos.encoderapp.domain.exception.UnexpectedError;
+import com.acolyptos.encoderapp.domain.vehicle.client.VehicleClientInterface;
 import com.acolyptos.encoderapp.domain.vehicle.model.Vehicle;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleInspection;
 import com.acolyptos.encoderapp.domain.vehicle.model.VehicleRequest;
-import com.acolyptos.encoderapp.domain.vehicle.repository.VehicleClientInterface;
 import com.acolyptos.encoderapp.domain.vehicle.service.VehicleService;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
