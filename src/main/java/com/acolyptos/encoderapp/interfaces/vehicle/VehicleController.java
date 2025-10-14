@@ -39,7 +39,7 @@ public class VehicleController {
   }
 
   @PostMapping(value = "/requestVehicle", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Vehicle retrieveVehicleFromFile(@RequestBody VehicleRequest vehicleRequest)
+  public Vehicle retrieveVehicleDetails(@RequestBody VehicleRequest vehicleRequest)
       throws Exception {
     serverLog.info("Received a request from the client: {}", vehicleRequest.getPlate_no());
     return vehicleAppService.filterVehicleInspectionFromJson(vehicleRequest);
