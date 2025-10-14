@@ -16,10 +16,10 @@ import lombok.Setter;
 public class Vehicle {
 
   @JsonDeserialize(using = NaJsonDeserializer.class)
-  private String licensePlate;
+  private String inspectionId;
 
   @JsonDeserialize(using = NaJsonDeserializer.class)
-  private String inspectionId;
+  private String licensePlate;
 
   @JsonDeserialize(using = NaJsonDeserializer.class)
   private String chassis;
@@ -37,13 +37,19 @@ public class Vehicle {
   private String categoryType;
 
   @JsonDeserialize(using = NaJsonDeserializer.class)
-  private String model;
+  private String manufacturer;
+
+  @JsonDeserialize(using = NaJsonDeserializer.class)
+  private String brand;
 
   @JsonDeserialize(using = NaJsonDeserializer.class)
   private String modelYear;
 
   @JsonDeserialize(using = NaJsonDeserializer.class)
   private String fuelType;
+
+  @JsonDeserialize(using = NaJsonDeserializer.class)
+  private String maximumTotalWeight;
 
   @Override
   public String toString() {
@@ -61,12 +67,16 @@ public class Vehicle {
         + color
         + ",\n\tcategoryType: "
         + categoryType
-        + ",\n\tmodel: "
-        + model
+        + ",\n\tmanufacturer: "
+        + manufacturer
+        + ",\n\tbrand: "
+        + brand
         + ",\n\tmodelYear: "
         + modelYear
         + ",\n\tfuelType: "
         + fuelType
+        + ",\n\tmaximumTotalWeight: "
+        + maximumTotalWeight
         + "\n}";
   }
 }
