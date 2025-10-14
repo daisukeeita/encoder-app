@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.acolyptos.encoderapp</groupId>
   <artifactId>encoder-app</artifactId>
   <version>0.1.0</version>
-
   <name>encoder-app</name>
   <!-- FIXME change it to the project's website -->
   <!-- <url>http://www.example.com</url> -->
-
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>4.0.0-M1</version> <!-- Replace with current stable -->
-    <relativePath/> <!-- lookup parent from the repository -->
+    <version>4.0.0-M1</version>
+    <!-- Replace with current stable -->
+    <relativePath></relativePath>
+    <!-- lookup parent from the repository -->
   </parent>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>23</maven.compiler.source>
     <maven.compiler.target>23</maven.compiler.target>
   </properties>
-
   <dependencies>
     <!-- Spring Maven Plugin -->
     <dependency>
@@ -32,32 +27,32 @@
       <artifactId>spring-boot-maven-plugin</artifactId>
       <version>4.0.0-M1</version>
     </dependency>
-
     <!-- Spring Web -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-
     <!-- Spring Data JPA -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
-
     <!-- Spring Test -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-
-    <!-- Validation -->
+    <!-- Spring Validation -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-validation</artifactId>
     </dependency>
-
+    <!-- Spring Security -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
     <!-- PostgreSQL Driver -->
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -65,7 +60,6 @@
       <version>42.7.7</version>
       <scope>runtime</scope>
     </dependency>
-
     <!-- Lombok (compile-time only, not bundled in JAR) -->
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -73,7 +67,6 @@
       <version>1.18.38</version>
       <scope>provided</scope>
     </dependency>
-
     <!-- Spring Boot Dev Tools (development only) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -81,41 +74,36 @@
       <scope>runtime</scope>
       <optional>true</optional>
     </dependency>
-
     <!-- ANTLR for grammar compiler -->
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4</artifactId>
       <version>4.13.2</version>
     </dependency>
-
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
       <version>2.19.2</version>
     </dependency>
-
     <dependency>
       <groupId>io.github.cdimascio</groupId>
       <artifactId>java-dotenv</artifactId>
       <version>5.2.2</version>
     </dependency>
-
     <dependency>
       <groupId>org.apache.httpcomponents.client5</groupId>
       <artifactId>httpclient5</artifactId>
       <version>5.5</version>
     </dependency>
-
     <dependency>
       <groupId>net.logstash.logback</groupId>
       <artifactId>logstash-logback-encoder</artifactId>
       <version>8.1</version>
     </dependency>
   </dependencies>
-
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
+      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
