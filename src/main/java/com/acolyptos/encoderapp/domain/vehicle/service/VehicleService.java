@@ -32,11 +32,11 @@ public class VehicleService {
     vehicle.setChassis(vehicleInspection.getVehicleInformation().getChassis());
     vehicle.setEngine(vehicleInspection.getVehicleInformation().getEngine());
     vehicle.setMvFileNumber(vehicleInspection.getVehicleInformation().getMvFileNumber());
-    vehicle.setModel(
-        vehicleInspection.getVehicleInformation().getManufacturer()
-            + " - "
-            + vehicleInspection.getVehicleInformation().getBrand());
+    vehicle.setManufacturer(vehicleInspection.getVehicleInformation().getManufacturer());
+    vehicle.setBrand(vehicleInspection.getVehicleInformation().getBrand());
     vehicle.setFuelType(vehicleInspection.getVehicleInformation().getFuelType());
+    vehicle.setMaximumTotalWeight(
+        (vehicleInspection.getVehicleInformation().getMaximumTotalWeight()));
 
     if (vehicleInspection.getVehicleInformation().getColor() == null) {
       vehicle.setColor(
@@ -55,8 +55,8 @@ public class VehicleService {
 
     if (vehicleInspection.getVehicleInformation().getModelYear() == null) {
       vehicle.setModelYear(
-          "Year Model was not provided. Please see the nearest LTO to update the Vehicle Year"
-              + " Model.");
+          "Year Model was not provided. Please see the nearest LTO to update the Vehicle"
+              + " Year Model.");
     } else {
       vehicle.setModelYear(vehicleInspection.getVehicleInformation().getModelYear());
     }
